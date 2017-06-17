@@ -26,6 +26,7 @@ router.get('/profile', function(req, res, next) {
 router.get('/signup', function(req, res, next) {
   res.render('accounts/signup', {
     errors: req.flash('errors')
+
   });
 });
 
@@ -50,6 +51,13 @@ router.post('/signup', function(req, res, next) {
       });
     }
   });
+});
+
+
+
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;
