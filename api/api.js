@@ -13,7 +13,7 @@ router.get('/:name',function(req, res, next) {
         callback(null, category);
       });
     },
-    function(callback) {
+    function(category, callback) {
       for (var i=0; i < 30; i++) {
         var product = new Product();
         product.category = category._id;
@@ -28,3 +28,5 @@ router.get('/:name',function(req, res, next) {
 
   res.json({ message: 'Success' });
 });
+
+module.exports = router;
