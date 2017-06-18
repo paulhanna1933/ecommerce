@@ -12,6 +12,7 @@ var passport      = require('passport');
 
 var secret = require('./config/secret');
 var User = require('./models/user');
+var Category = require('./models/category');
 
 var app = express(); // to get express commands with app.
 
@@ -45,15 +46,25 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+  Category.find({}, function(err, categories) {
+    if (err) return next(err);
+    res.locals.categories = categories;
+    next();
+  });
+});
+
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 var mainRoutes = require('./routes/main');
 var userRoutes = require('./routes/user');
+var adminRoutes = require('./routes/admin');
 
 app.use(mainRoutes);
 app.use(userRoutes);
+app.use(adminRoutes);
 
 app.listen(secret.port, function(err) {  // viewable URL at localhost:3000
   if (err) throw err;
