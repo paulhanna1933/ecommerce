@@ -1,6 +1,6 @@
-var mongoose  = require('mongoose');
-var mongoosastic = require('mongoosastic');
-var Schema    = mongoose.Schema;
+var mongoose      = require('mongoose');
+var mongoosastic  = require('mongoosastic');
+var Schema        = mongoose.Schema;
 
 var ProductSchema = new Schema ({
   category: { type: Schema.Types.ObjectId, ref: 'Category'},
@@ -14,6 +14,7 @@ ProductSchema.plugin(mongoosastic, {
     'localhost:9200'
   ]
 });
+
 
 
 
